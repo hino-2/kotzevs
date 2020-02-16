@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react'
-import ArticleList from './ArticleList'
-import articles from '../features'
+// import ArticleList from './ArticleList'
+// import articles from '../features'
+import CircleMenu from './CircleMenu'
 import 'bootstrap/dist/css/bootstrap.css'
 
 class App extends PureComponent {
@@ -10,27 +11,11 @@ class App extends PureComponent {
 
   render() {
     return (
-      <div className="container">
-        <div className="jumbotron">
-          <h1 className="display-3">
-            Я приложенье
-            <button className="btn btn-primary btn-lg float-right" onClick={this.revert}>
-              Revert
-            </button>
-          </h1>
-        </div>
-          <ArticleList articles = {this.state.reverted ? articles.slice().reverse() : articles} />
+      <div className="container text-center">
+        <CircleMenu />
       </div>
     )
   }
-
-  revert = () => {
-    this.setState({
-      reverted: this.state.reverted ? false : true
-    })
-    //console.log(this.state.reverted);
-  }
-
 }
 
 export default App

@@ -36,11 +36,11 @@ class Article extends PureComponent {
     const {article, isOpen, onButtonClick} = this.props
     const body = isOpen && <section className="card-text">{article.text}</section>
     return (
-      <div className="card mx-auto" style={{width: '50%'}}>
+      <div className="card mx-auto" style={{width: '80%'}}>
         <div className="card-header">
           <h2 onClick={this.incrementCounter}>
             {article.title}&nbsp;
-            clicked {this.state.count}
+            <div className="text-muted" style={{"font-size": "10px"}}>clicked {this.state.count}</div>
             <button onClick={onButtonClick} className="btn btn-primary btn-lg float-right">
               {isOpen ? 'close' : 'open'}
             </button>
