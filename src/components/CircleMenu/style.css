@@ -1,46 +1,37 @@
-body{
-  background-color: #eedddd;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
+*, *::before, *::after {
+    box-sizing: unset!important;
 }
 
 .toggle {
-  background-color: #c87f8a;
+  background-color: #e9790b;
   text-align: center;
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   position: absolute;
-  margin: auto;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  top: var(--y);
+  left: var(--x);
 }
 
 .fa-plus{
-  font-size: 60px;
+  font-size: 30px;
   color: white;
   display: block;
-  margin-top: 20px;
+  margin-top: 11px;
   transition: 0.7s;
 }
 
 .menu {
-  background-color: white;
+  background-color: #ffffff6b;
   height: 100px;
   width: 100px;
   transform: scale(0);
   border-radius: 50%;
   border-style: double;
-  border-color: #c87f8a;
+  border-color: #e9790b;
   position: absolute;
-  margin: auto;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  top: var(--y);
+  left: var(--x);
   z-index: -1;
   transition: 0.7s;
 }
@@ -49,12 +40,12 @@ a {
   display: inline-block;
   position: absolute;
   font-size: 15px;
-  color: #BBBBBB;
+  color: #1e7e34!important;
 }
 
 a:nth-child(1){
   top: 6px;
-  left: 45px;
+  left: 46px;
 }
 
 a:nth-child(2){
@@ -69,7 +60,7 @@ a:nth-child(3){
 
 a:nth-child(4){
   top: 78px;
-  left: 42px;
+  left: 45px;
 }
 
 a:nth-child(5){
@@ -83,5 +74,5 @@ a:nth-child(6){
 }
 
 a:hover {
-  color: #c87f8a;
+  color: #0f3f1a!important;
 }
