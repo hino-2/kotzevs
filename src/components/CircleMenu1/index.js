@@ -38,6 +38,7 @@ export default class CircleMenu1 extends Component {
     this.setState({
       isShown: !this.state.isShown
     })
+    document.getElementById('header').innerHTML = "привет я Зевс плз нажми на нос";
   }
 
   showPhotos = () => {
@@ -69,12 +70,12 @@ export default class CircleMenu1 extends Component {
                 <span className="hamburger hamburger-3"></span>
               </label>
 
-              <a href="#" title="Песни" className="menu-item"> <i className="fa fa-microphone"></i> </a>
-              <a href="tg://resolve?domain=Zeus_catbot" title="Я в телеграме" className="menu-item"> <i className="fa fa-telegram"></i> </a>
+              <a href="#" className="menu-item"> <i className="fa fa-microphone"></i> </a>
+              <a href="tg://resolve?domain=Zeus_catbot" className="menu-item"> <i className="fa fa-telegram"></i> </a>
               <a href="#" className="menu-item" style={{"width": "0"}}></a>
-              <a href="http://localhost:3000/" title="Мой хозяин" className="menu-item"> <i className="fa fa-user"></i> </a>
+              <a href="http://localhost:3000/" className="menu-item"> <i className="fa fa-user"></i> </a>
               <a href="#" className="menu-item" style={{"width": "0"}}></a>
-              <a href="#" onClick={this.showPhotos} title="Фото" className="menu-item"> <i className="fa fa-camera-retro"></i> </a>
+              <a href="#" onClick={this.showPhotos} className="menu-item"> <i className="fa fa-camera-retro"></i> </a>
             </nav>
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
               <defs>

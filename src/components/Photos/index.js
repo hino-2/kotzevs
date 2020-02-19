@@ -1,31 +1,47 @@
 import React, {Component} from 'react'
 import './style.css'
+import photoList from './list'
 
 export default class Photos extends Component {
   constructor () {
     super();
   }
 
-  state = {
-    photoID: 0
+  componentWillMount() {
+    setTimeout(function() { document.getElementById('header').innerHTML = photoList[0].header; }, 100);
   }
 
-  render() {
-    return (
-      <div>
-        <form>
-          <input type="radio" name="fancy" autofocus value="clubs" id="clubs" />
-          <input type="radio" name="fancy" value="hearts" id="hearts" />
-          <input type="radio" name="fancy" value="spades" id="spades" />
-          <input type="radio" name="fancy" value="diamonds" id="diamonds" />
-          <label for="clubs">&#9827; Clubs</label>
-          <label for="hearts">&#9829; Hearts</label>
-          <label for="spades">&#9824; Spades</label>
-          <label for="diamonds">&#9830; Diamonds</label>
+  photosBtnClick = id => {
+    if(photoList[id-1])
+      setTimeout(function() { document.getElementById('header').innerHTML = photoList[id-1].header; }, 500);
+  }
+  // <button className="carousel__prev btn1" onClick={this.photosBtnClick.bind(this, parseInt(photo.id - 1))}>
+  // <i className="fa fa-user"></i>
+  // </button>
+  // <button className="carousel__next btn1" onClick={this.photosBtnClick.bind(this, parseInt(photo.id + 1))}>
+  // <i className="fa fa-user"></i>
+  // </button>
 
-          <div class="keys">Use left and right keys to navigate</div>
-        </form>
-      </div>
+  render() {
+    const photos = photoList.map((photo, index) =>
+      <li key={photo.id} id={"carousel__slide" + parseInt(photo.id)} tabIndex="0" className="carousel__slide">
+        <div className="carousel__snapper">
+          <img src={photo.url} className="photo" />
+          <a href={"#carousel__slide" + parseInt((photo.id - 1 < 1 ? photoList.length : photo.id - 1))}
+            className="carousel__prev"
+            onClick={this.photosBtnClick.bind(this, (photo.id - 1 < 1 ? photoList.length : photo.id - 1))}></a>
+          <a href={"#carousel__slide" + parseInt((photo.id + 1 > photoList.length ? "1" : photo.id + 1))}
+            className="carousel__next"
+            onClick={this.photosBtnClick.bind(this, (photo.id + 1 > photoList.length ? "1" : photo.id + 1))}></a>
+        </div>
+      </li>
+    )
+    return (
+      <section className="carousel" aria-label="Gallery">
+        <ol className="carousel__viewport">
+          {photos}
+        </ol>
+      </section>
     );
   }
 }

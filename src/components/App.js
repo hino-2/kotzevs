@@ -7,7 +7,7 @@ class App extends PureComponent {
 
   render() {
     return (
-      <div className="">
+      <div>
         <CircleMenu1 />
       </div>
     )
