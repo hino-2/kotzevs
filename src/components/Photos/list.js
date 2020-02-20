@@ -22,7 +22,7 @@ export default [
   {
     id: 5,
     url: "/img/photo5.jpg",
-    header: "я теперь монашка"
+    header: "я ведь теперь монашка?"
   },
   {
     id: 6,
