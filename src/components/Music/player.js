@@ -500,35 +500,16 @@ var Player = {
     buffer: null,
     duration: 0,
 
-    tracks: [
-        {
-            artist: "Kavinsky",
-            song: "Odd Look ft. The Weeknd",
-            url: "//katiebaca.com/tutorial/odd-look.mp3"
-        }
-    ],
+    tracks: [],
 
-    init: function () {
+    init: function (musicList) {
+        this.tracks = musicList;
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         this.context = new AudioContext();
         this.context.suspend && this.context.suspend();
         this.firstLaunch = true;
         try {
-            this.javascriptNode = this.context.createScriptProcessor(2048, 1, 1);
-            this.javascriptNode.connect(this.context.destination);
-            this.analyser = this.context.createAnalyser();
-            this.analyser.connect(this.javascriptNode);
-            this.analyser.smoothingTimeConstant = 0.6;
-            this.analyser.fftSize = 2048;
-            this.source = this.context.createBufferSource();
-            this.destination = this.context.destination;
             this.loadTrack(0);
-
-            this.gainNode = this.context.createGain();
-            this.source.connect(this.gainNode);
-            this.gainNode.connect(this.analyser);
-            this.gainNode.connect(this.destination);
-
             this.initHandlers();
         } catch (e) {
             Framer.setLoadingPercent(1);
@@ -538,13 +519,33 @@ var Player = {
         console.log('Player initialized');
     },
 
+    createSource: function () {
+
+    },
+
     loadTrack: function (index) {
         var that = this;
         var request = new XMLHttpRequest();
         var track = this.tracks[index];
-        //document.querySelector('.song .artist').textContent = track.artist;
-        document.querySelector('.song .name').textContent = track.artist + ' - ' + track.song;
+        console.log('track', track);
+        document.querySelector('.song .name').textContent = track.name;
         this.currentSongIndex = index;
+
+// =========================
+        this.javascriptNode = this.context.createScriptProcessor(2048, 1, 1);
+        this.javascriptNode.connect(this.context.destination);
+        this.analyser = this.context.createAnalyser();
+        this.analyser.connect(this.javascriptNode);
+        this.analyser.smoothingTimeConstant = 0.6;
+        this.analyser.fftSize = 2048;
+        this.source = this.context.createBufferSource();
+        this.destination = this.context.destination;
+
+        this.gainNode = this.context.createGain();
+        this.source.connect(this.gainNode);
+        this.gainNode.connect(this.analyser);
+        this.gainNode.connect(this.destination);
+// =========================
 
         request.open('GET', track.url, true);
         request.responseType = 'arraybuffer';
@@ -614,4 +615,3 @@ var Player = {
 };
 
 export default Player;
-//Player.init();

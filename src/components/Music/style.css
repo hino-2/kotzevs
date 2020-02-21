@@ -137,23 +137,26 @@ canvas {
 
 .songList {
   position: fixed;
-  right: 50px;
+  right: 10px;
   top: 100px;
   border: 1px;
   padding: 0;
   padding-inline-start: 0;
-  background-color: #ffffffaa;
-  border-radius: 3px;
+  background-color: #ffc107;
   padding: 7px;
-  min-width: 300px;
+  min-width: 250px;
+  max-width: 550px;
 }
 
 .song-list-item {
   display: grid;
   grid-template-columns: 1fr 5fr 2fr;
-  margin: 0 0 10px 0;
-  color: #1e7e34;
+  padding: 0 0 10px;
+  margin: 0 0 1px;
+  color: black;
   font-weight: bold;
+  border: 1px dashed;
+  cursor: pointer;
 }
 
 .songID {
@@ -165,5 +168,6 @@ canvas {
 }
 
 .songDuration {
-  text-align: end;
+  justify-self: center;
+    align-self: center;
 }

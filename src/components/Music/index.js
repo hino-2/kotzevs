@@ -6,6 +6,7 @@ import Player from './player'
 export default class Music extends Component {
   constructor () {
     super();
+
   }
 
   calcX = () => { return (410 * window.innerWidth / 1200) - 285 }
@@ -26,7 +27,7 @@ export default class Music extends Component {
   }
 
   componentDidMount() {
-    Player.init();
+    Player.init(musicList);
     document.getElementById('header').innerHTML = musicList[0].desc;
     document.getElementById('songName').innerHTML = musicList[0].name;
     this.updatePosition();
@@ -37,10 +38,14 @@ export default class Music extends Component {
     window.removeEventListener("resize", this.updatePosition.bind(this));
   }
 
+  loadTrack = id => {
+    Player.loadTrack(id);
+  }
+
   render () {
     const songs = musicList.map((song, index) =>
-      <li key={song.id} className="song-list-item">
-        <div className="songID">{song.id}</div>
+      <li key={song.id} className="song-list-item" onClick={this.loadTrack.bind(this, song.id)}>
+        <div className="songID">{song.id + 1}</div>
         <div className="songName">{song.name}</div>
         <div className="songDuration">{song.duration}</div>
         <br />
