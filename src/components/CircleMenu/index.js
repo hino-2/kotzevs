@@ -20,7 +20,7 @@ export default class CircleMenu extends Component {
 
   state = {
     mode: 0,
-    header: "привет я Зевс плз нажми на нос",
+    header: "привет плз нажми на нос",
     xMenu: this.calcX(),
     yMenu: this.calcY()
   }
@@ -36,7 +36,7 @@ export default class CircleMenu extends Component {
 
   showMenu = () => {
     this.setState({ mode: 0 });
-    document.getElementById('header').innerHTML = "привет я Зевс плз нажми на нос";
+    document.getElementById('header').innerHTML = this.state.header;
   }
 
   showPhotos = () => {
@@ -51,7 +51,7 @@ export default class CircleMenu extends Component {
     this.setState({ mode: 3 });
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     document.getElementById('header').innerHTML = this.state.header;
   }
 

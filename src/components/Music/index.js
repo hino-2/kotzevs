@@ -1,14 +1,9 @@
 import React, {Component} from 'react'
 import './style.css'
 import musicList from './list'
-import Player from './player'
+import Player from './player1'
 
 export default class Music extends Component {
-  constructor () {
-    super();
-
-  }
-
   calcX = () => { return (410 * window.innerWidth / 1200) - 285 }
   calcY = () => { return (335 * window.innerWidth / 1200) - 305 }
 
@@ -27,9 +22,8 @@ export default class Music extends Component {
   }
 
   componentDidMount() {
-    Player.init(musicList);
-    document.getElementById('header').innerHTML = musicList[0].desc;
-    document.getElementById('songName').innerHTML = musicList[0].name;
+    Player.init(musicList[0]);
+    document.getElementById('header').innerHTML = musicList[0].name;
     this.updatePosition();
     window.addEventListener("resize", this.updatePosition.bind(this));
   }
@@ -39,7 +33,11 @@ export default class Music extends Component {
   }
 
   loadTrack = id => {
-    Player.loadTrack(id);
+    document.querySelector('.pause').style.display = 'none';
+    document.querySelector('.play').style.display = 'inline-block';
+    document.getElementById('header').innerHTML = musicList[id].name;
+    Player.pause();
+    Player.init(musicList[id]);
   }
 
   render () {
@@ -50,8 +48,10 @@ export default class Music extends Component {
         <div className="songDuration">{song.duration}</div>
         <br />
         <div className="songDesc">{song.desc}</div>
+        <audio id={"song" + song.id} src={song.url} />
       </li>
     )
+
     return (
       <div>
         <link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css' />

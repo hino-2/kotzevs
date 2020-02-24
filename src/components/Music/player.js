@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 var Framer = {
     countTicks: 360,
@@ -178,6 +178,7 @@ var Tracker = {
                 if (!that.animatedInProgress) {
                     that.pressButton = false;
                     Player.context.currentTime = that.angle / (2 * Math.PI) * Player.source.buffer.duration;
+                    console.log(Player.context.currentTime);
                     clearInterval(id);
                 }
             }, 100);
@@ -540,6 +541,7 @@ var Player = {
         this.analyser.fftSize = 2048;
         this.source = this.context.createBufferSource();
         this.destination = this.context.destination;
+        console.log(this.source);
 
         this.gainNode = this.context.createGain();
         this.source.connect(this.gainNode);
@@ -557,6 +559,8 @@ var Player = {
         };
 
         request.send();
+        // this.stop();
+        // this.play();
     },
 
     nextTrack: function () {

@@ -3,11 +3,9 @@ import './style.css'
 import photoList from './list'
 
 export default class Photos extends Component {
-  constructor () {
-    super();
-  }
 
-  componentWillMount() {
+
+  UNSAFE_componentWillMount() {
     setTimeout(function() { document.getElementById('header').innerHTML = photoList[0].header; }, 100);
   }
 
