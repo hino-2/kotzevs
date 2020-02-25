@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './style.css'
 import Photos from '../Photos'
 import Music from '../Music'
+import Player from '../Music/player'     // чтобы тормозить музон при показе меню
 
 export default class CircleMenu extends Component {
   constructor() {
@@ -19,8 +20,9 @@ export default class CircleMenu extends Component {
   // 3 - master
 
   state = {
+    width: window.innerWidth,
     mode: 0,
-    header: "привет плз нажми на нос",
+    header: "привет я Зевс плз нажми на нос",
     xMenu: this.calcX(),
     yMenu: this.calcY()
   }
@@ -29,7 +31,8 @@ export default class CircleMenu extends Component {
     if(window.innerWidth !== this.state.width) {
       this.setState({
         xMenu: this.calcX(),
-        yMenu: this.calcY()
+        yMenu: this.calcY(),
+        width: window.innerWidth
       });
     }
   }
@@ -37,6 +40,7 @@ export default class CircleMenu extends Component {
   showMenu = () => {
     this.setState({ mode: 0 });
     document.getElementById('header').innerHTML = this.state.header;
+    Player.pause();
   }
 
   showPhotos = () => {
