@@ -3,11 +3,12 @@ import './style.css'
 import Photos from '../Photos'
 import Music from '../Music'
 import Player from '../Music/player'     // чтобы тормозить музон при показе меню
+import Master from '../Master'
 
 export default class CircleMenu extends Component {
   constructor() {
     super();
-    this.updatePosition = this.updatePosition.bind(this);
+    this.updateMenuPosition = this.updateMenuPosition.bind(this);
   }
 
   calcX = () => { return (410 * window.innerWidth / 1200) - 5 }
@@ -27,7 +28,7 @@ export default class CircleMenu extends Component {
     yMenu: this.calcY()
   }
 
-  updatePosition = () => {
+  updateMenuPosition = () => {
     if(window.innerWidth !== this.state.width) {
       this.setState({
         xMenu: this.calcX(),
@@ -40,7 +41,7 @@ export default class CircleMenu extends Component {
   showMenu = () => {
     this.setState({ mode: 0 });
     document.getElementById('header').innerHTML = this.state.header;
-    Player.pause();
+    if(this.state.mode == 2) Player.pause();
   }
 
   showPhotos = () => {
@@ -60,12 +61,12 @@ export default class CircleMenu extends Component {
   }
 
   componentDidMount() {
-    this.updatePosition();
-    window.addEventListener("resize", this.updatePosition.bind(this));
+    this.updateMenuPosition();
+    window.addEventListener("resize", this.updateMenuPosition);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updatePosition.bind(this));
+    window.removeEventListener("resize", this.updateMenuPosition);
   }
 
   render () {
@@ -83,7 +84,7 @@ export default class CircleMenu extends Component {
               <a href="#" onClick={this.showMusic} className="menu-item"> <i className="fa fa-microphone"></i> </a>
               <a href="tg://resolve?domain=Zeus_catbot" className="menu-item"> <i className="fa fa-telegram"></i> </a>
               <a href="#" className="menu-item" style={{"width": "0"}}></a>
-              <a href="http://localhost:3000/" className="menu-item"> <i className="fa fa-user"></i> </a>
+              <a href="#" onClick={this.showMaster} className="menu-item"> <i className="fa fa-user"></i> </a>
               <a href="#" className="menu-item" style={{"width": "0"}}></a>
               <a href="#" onClick={this.showPhotos} className="menu-item"> <i className="fa fa-camera-retro"></i> </a>
             </nav>
@@ -131,6 +132,18 @@ export default class CircleMenu extends Component {
           </div>
         </div>
       )
+    }
+    if(this.state.mode == 3) {
+      return (
+        <div>
+          <div className="close-button">
+            <button onClick={this.showMenu}><i className="fa fa-times"></i></button>
+          </div>
+          <div>
+            <Master />
+          </div>
+        </div>
+      );
     }
   }
 }

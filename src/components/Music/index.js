@@ -4,6 +4,11 @@ import musicList from './list'
 import Player from './player'
 
 export default class Music extends Component {
+  constructor() {
+    super();
+    this.updateMusicPosition = this.updateMusicPosition.bind(this);
+  }
+
   calcX = () => { return (410 * window.innerWidth / 1200) - 285 }
   calcY = () => { return (335 * window.innerWidth / 1200) - 335 }
 
@@ -14,7 +19,7 @@ export default class Music extends Component {
     currentSongIndex: 0
   }
 
-  updatePosition = () => {
+  updateMusicPosition = () => {
     if(window.innerWidth !== this.state.width) {
       this.setState({
         xMenu: this.calcX(),
@@ -27,12 +32,12 @@ export default class Music extends Component {
   componentDidMount() {
     Player.init(musicList[0]);
     document.getElementById('header').innerHTML = musicList[0].name;
-    window.addEventListener("resize", this.updatePosition.bind(this));
-    this.updatePosition();
+    window.addEventListener("resize", this.updateMusicPosition);
+    this.updateMusicPosition();
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updatePosition.bind(this));
+    window.removeEventListener("resize", this.updateMusicPosition);
   }
 
   loadTrack = id => {

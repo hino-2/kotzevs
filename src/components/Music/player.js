@@ -313,12 +313,12 @@ var Scene = {
   },
 
   initHandlers: function () {
-      var that = this;
-      window.onresize = function () {
-          that.canvasConfigure();
-          Framer.configure();
-          that.render();
-      };
+      // var that = this;
+      // window.onresize = function () {
+      //     that.canvasConfigure();
+      //     Framer.configure();
+      //     that.render();
+      // };
   },
 
   render: function () {
@@ -446,10 +446,10 @@ var Controls = {
           }
           var time = min + ':' + seconds;
           that.timeControl.textContent = time;
-          if(rawTime <= Player.source.buffer.duration) {
+          if(rawTime <= (Player.source.buffer != null ? Player.source.buffer.duration : 0)) {
             that.initTimeHandler();
           } else {
-            this.context.suspend();
+            Player.pause();
             Tracker.stopAnimation();
           }
       }, 300);
