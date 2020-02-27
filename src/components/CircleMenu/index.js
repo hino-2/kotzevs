@@ -9,6 +9,13 @@ export default class CircleMenu extends Component {
   constructor() {
     super();
     this.updateMenuPosition = this.updateMenuPosition.bind(this);
+    this.getMusicList();
+  }
+
+  async getMusicList() {
+    let response = await fetch('/music/list.json');
+    await response.json()
+    .then(data => { this.setState({ musicList: data }) });
   }
 
   calcX = () => { return (410 * window.innerWidth / 1200) - 5 }
@@ -128,7 +135,7 @@ export default class CircleMenu extends Component {
             <button onClick={this.showMenu}><i className="fa fa-times"></i></button>
           </div>
           <div>
-            <Music />
+            <Music musicList={this.state.musicList}/>
           </div>
         </div>
       )

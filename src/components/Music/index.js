@@ -1,23 +1,22 @@
 import React, {Component} from 'react'
 import './style.css'
-import musicList from './list'
 import Player from './player'
 
 export default class Music extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.updateMusicPosition = this.updateMusicPosition.bind(this);
+    this.state = {
+      width: window.innerWidth,
+      xMenu: this.calcX(),
+      yMenu: this.calcY(),
+      currentSongIndex: 0,
+      musicList: props.musicList
+    };
   }
 
   calcX = () => { return (410 * window.innerWidth / 1200) - 285 }
   calcY = () => { return (335 * window.innerWidth / 1200) - 335 }
-
-  state = {
-    width: window.innerWidth,
-    xMenu: this.calcX(),
-    yMenu: this.calcY(),
-    currentSongIndex: 0
-  }
 
   updateMusicPosition = () => {
     if(window.innerWidth !== this.state.width) {
@@ -30,8 +29,8 @@ export default class Music extends Component {
   }
 
   componentDidMount() {
-    Player.init(musicList[0]);
-    document.getElementById('header').innerHTML = musicList[0].name;
+    Player.init(this.state.musicList[0]);
+    document.getElementById('header').innerHTML = this.state.musicList[0].name;
     window.addEventListener("resize", this.updateMusicPosition);
     this.updateMusicPosition();
   }
@@ -41,18 +40,18 @@ export default class Music extends Component {
   }
 
   loadTrack = id => {
-    if(id >= 0 && id < musicList.length && document.getElementById(`loading${this.state.currentSongIndex}`).innerHTML === '' && this.state.currentSongIndex !== id) {
+    if(id >= 0 && id < this.state.musicList.length && document.getElementById(`loading${this.state.currentSongIndex}`).innerHTML === '' && this.state.currentSongIndex !== id) {
       this.setState({ currentSongIndex: id });
       document.querySelector('.pause').style.display = 'none';
       document.querySelector('.play').style.display = 'inline-block';
-      document.getElementById('header').innerHTML = musicList[id].name;
+      document.getElementById('header').innerHTML = this.state.musicList[id].name;
       Player.pause();
-      Player.init(musicList[id]);
+      Player.init(this.state.musicList[id]);
     }
   }
 
   render () {
-    const songs = musicList.map((song, index) =>
+    const songs = this.state.musicList.map((song, index) =>
       <li key={song.id} className="song-list-item" onClick={this.loadTrack.bind(this, song.id)}>
         <div className="songID">{song.id + 1}</div>
         <div className="songName">{song.name}</div>
