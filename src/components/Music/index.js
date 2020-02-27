@@ -41,7 +41,7 @@ export default class Music extends Component {
   }
 
   loadTrack = id => {
-    if(id >= 0 && id < musicList.length && document.getElementById(`loading${this.state.currentSongIndex}`).innerHTML == '' && this.state.currentSongIndex != id) {
+    if(id >= 0 && id < musicList.length && document.getElementById(`loading${this.state.currentSongIndex}`).innerHTML === '' && this.state.currentSongIndex !== id) {
       this.setState({ currentSongIndex: id });
       document.querySelector('.pause').style.display = 'none';
       document.querySelector('.play').style.display = 'inline-block';

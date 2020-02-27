@@ -24,13 +24,13 @@ export default class Photos extends Component {
     const photos = photoList.map((photo, index) =>
       <li key={photo.id} id={"carousel__slide" + parseInt(photo.id)} tabIndex="0" className="carousel__slide">
         <div className="carousel__snapper">
-          <img src={photo.url} className="photo" />
-          <a href={"#carousel__slide" + parseInt((photo.id - 1 < 1 ? photoList.length : photo.id - 1))}
+          <img src={photo.url} className="photo" alt="" />
+          <a href={"#carousel__slide" + (photo.id - 1 < 1 ? photoList.length : photo.id - 1)}
             className="carousel__prev"
-            onClick={this.photosBtnClick.bind(this, (photo.id - 1 < 1 ? photoList.length : photo.id - 1))}></a>
-          <a href={"#carousel__slide" + parseInt((photo.id + 1 > photoList.length ? "1" : photo.id + 1))}
+            onClick={this.photosBtnClick.bind(this, (photo.id - 1 < 1 ? photoList.length : photo.id - 1))}><font style={{"color": "transparent"}}>a</font></a>
+          <a href={"#carousel__slide" + (photo.id + 1 > photoList.length ? "1" : photo.id + 1)}
             className="carousel__next"
-            onClick={this.photosBtnClick.bind(this, (photo.id + 1 > photoList.length ? "1" : photo.id + 1))}></a>
+            onClick={this.photosBtnClick.bind(this, (photo.id + 1 > photoList.length ? "1" : photo.id + 1))}><font style={{"color": "transparent"}}>a</font></a>
         </div>
       </li>
     )

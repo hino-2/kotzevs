@@ -111,7 +111,7 @@ var Framer = {
       var x = (angle - l);
       var h;
 
-      if (x == m) {
+      if (x === m) {
           return this.maxTickSize;
       }
       var d = Math.abs(m - x);
@@ -252,7 +252,7 @@ var Tracker = {
       var step = l / this.animationCount, i = 0;
       var f = function () {
           that.angle += step;
-          if (++i == that.animationCount) {
+          if (++i === that.animationCount) {
               that.angle = angle;
               that.prevAngle = angle;
               that.animatedInProgress = false;
@@ -466,14 +466,14 @@ var Controls = {
       this.context.lineWidth = 1;
       var x = Tracker.r / Math.sqrt(Math.pow(Math.tan(Tracker.angle), 2) + 1);
       var y = Math.sqrt(Tracker.r * Tracker.r - x * x);
-      if (this.getQuadrant() == 2) {
+      if (this.getQuadrant() === 2) {
           x = -x;
       }
-      if (this.getQuadrant() == 3) {
+      if (this.getQuadrant() === 3) {
           x = -x;
           y = -y;
       }
-      if (this.getQuadrant() == 4) {
+      if (this.getQuadrant() === 4) {
           y = -y;
       }
       this.context.arc(this.scene.radius + this.scene.padding + x, this.scene.radius + this.scene.padding + y, 10, 0, Math.PI * 2, false);
@@ -548,21 +548,23 @@ var Player = {
       request.onload = function() {
           that.context.decodeAudioData(request.response, function(buffer) {
               that.source.buffer = buffer;
-              document.getElementById(`loading${track.id}`).innerHTML = '';
-              that.playButton = document.querySelector('.play');
-              that.playButton.addEventListener('mouseup', function () {
-                  that.playButton.style.display = 'none';
-                  that.pauseButton.style.display = 'inline-block';
-                  Player.play();
-                  that.playing = true;
-              });
-              that.pauseButton = document.querySelector('.pause');
-              that.pauseButton.addEventListener('mouseup', function () {
-                  that.playButton.style.display = 'inline-block';
-                  that.pauseButton.style.display = 'none';
-                  Player.pause();
-                  that.playing = false;
-              });
+              if(document.getElementById(`loading${track.id}`) !== null) {
+                document.getElementById(`loading${track.id}`).innerHTML = '';
+                that.playButton = document.querySelector('.play');
+                that.playButton.addEventListener('mouseup', function () {
+                    that.playButton.style.display = 'none';
+                    that.pauseButton.style.display = 'inline-block';
+                    Player.play();
+                    that.playing = true;
+                });
+                that.pauseButton = document.querySelector('.pause');
+                that.pauseButton.addEventListener('mouseup', function () {
+                    that.playButton.style.display = 'inline-block';
+                    that.pauseButton.style.display = 'none';
+                    Player.pause();
+                    that.playing = false;
+                });
+              }
           });
       };
 

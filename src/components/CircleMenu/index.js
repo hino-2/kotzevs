@@ -41,7 +41,7 @@ export default class CircleMenu extends Component {
   showMenu = () => {
     this.setState({ mode: 0 });
     document.getElementById('header').innerHTML = this.state.header;
-    if(this.state.mode == 2) Player.pause();
+    if(this.state.mode === 2) Player.pause();
   }
 
   showPhotos = () => {
@@ -70,7 +70,7 @@ export default class CircleMenu extends Component {
   }
 
   render () {
-    if(this.state.mode == 0) {
+    if(this.state.mode === 0) {
       return (
         <div>
             <nav className="menu" style={{"--x": this.state.xMenu + "px", "--y": this.state.yMenu + "px"}}>
@@ -81,12 +81,12 @@ export default class CircleMenu extends Component {
                 <span className="hamburger hamburger-3"></span>
               </label>
 
-              <a href="#" onClick={this.showMusic} className="menu-item"> <i className="fa fa-microphone"></i> </a>
-              <a href="tg://resolve?domain=Zeus_catbot" className="menu-item"> <i className="fa fa-telegram"></i> </a>
-              <a href="#" className="menu-item" style={{"width": "0"}}></a>
-              <a href="#" onClick={this.showMaster} className="menu-item"> <i className="fa fa-user"></i> </a>
-              <a href="#" className="menu-item" style={{"width": "0"}}></a>
-              <a href="#" onClick={this.showPhotos} className="menu-item"> <i className="fa fa-camera-retro"></i> </a>
+              <button onClick={this.showMusic} className="menu-item"> <i className="fa fa-microphone"></i> </button>
+              <button onClick={() => window.location = 'tg://resolve?domain=Zeus_catbot'} className="menu-item"> <i className="fa fa-telegram"></i> </button>
+              <button className="menu-item" style={{"display": "none"}}></button>
+              <button onClick={this.showMaster} className="menu-item"> <i className="fa fa-user"></i> </button>
+              <button className="menu-item" style={{"display": "none"}}></button>
+              <button onClick={this.showPhotos} className="menu-item"> <i className="fa fa-camera-retro"></i> </button>
             </nav>
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
               <defs>
@@ -109,7 +109,7 @@ export default class CircleMenu extends Component {
         </div>
       )
     }
-    if(this.state.mode == 1) {
+    if(this.state.mode === 1) {
       return (
         <div>
           <div className="close-button">
@@ -121,7 +121,7 @@ export default class CircleMenu extends Component {
         </div>
       )
     }
-    if(this.state.mode == 2) {
+    if(this.state.mode === 2) {
       return (
         <div>
           <div className="close-button">
@@ -133,7 +133,7 @@ export default class CircleMenu extends Component {
         </div>
       )
     }
-    if(this.state.mode == 3) {
+    if(this.state.mode === 3) {
       return (
         <div>
           <div className="close-button">
