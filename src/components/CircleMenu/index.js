@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import './style.css'
+//import './style.css'                    // CSS version
+import './style.scss'                   // SASS version
 import Photos from '../Photos'
 import Music from '../Music'
 import Player from '../Music/player'     // чтобы тормозить музон при показе меню

@@ -47,6 +47,7 @@
   box-sizing: border-box;
   scrollbar-color: transparent transparent; /* thumb and track color */
   scrollbar-width: 0px;
+  -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
@@ -60,10 +61,6 @@
 *::-webkit-scrollbar-thumb {
   background: transparent;
   border: none;
-}
-
-* {
-  -ms-overflow-style: none;
 }
 
 ol,
@@ -119,13 +116,6 @@ li {
 }
 
 @media (hover: hover) {
-  /* .carousel__snapper {
-    animation-name: tonext, snap;
-    animation-timing-function: ease;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-  } */
-
   .carousel__slide:last-child .carousel__snapper {
     animation-name: tostart, snap;
   }
@@ -142,32 +132,6 @@ li {
   animation-name: none;
 }
 
-/* .carousel__navigation {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-}
-
-.carousel__navigation-list,
-.carousel__navigation-item {
-  display: inline-block;
-}
-
-.carousel__navigation-button {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  background-color: #333;
-  background-clip: content-box;
-  border: 0.25rem solid transparent;
-  border-radius: 50%;
-  font-size: 0;
-  transition: transform 0.1s;
-} */
-
-
 .carousel::before,
 .carousel::after,
 .carousel__prev,
@@ -177,24 +141,10 @@ li {
   margin-top: 25%;
   width: 4rem;
   height: 4rem;
-  /* transform: translateY(-50%); */
   border-radius: 50%;
   font-size: 0;
   outline: 0;
-
-  /* background: #e9790b;
-  color: white;
-  border: 0;
-  transition: transform ease-out 200ms; */
 }
-
-/* .btn1:hover,
-.btn1:hover {
-  background: white;
-  color: #1e7e34;
-  -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-          transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-} */
 
 .carousel::before,
 .carousel__prev {

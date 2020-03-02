@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import './style.css'
+// import './style.css'      // css version
+import './style.scss'     // sass version
 import Player from './player'
 
 export default class Music extends Component {

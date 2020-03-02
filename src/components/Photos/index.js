@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './style.css'
+import './style.css'              // css version
 import photoList from './list'
 
 export default class Photos extends Component {

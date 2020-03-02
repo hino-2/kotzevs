@@ -81,8 +81,8 @@
 .menu-item:hover {
   background: white;
   color: #1e7e34;
-
 }
+
 .menu-item:nth-child(3) {
   -webkit-transition-duration: 180ms;
           transition-duration: 180ms;
